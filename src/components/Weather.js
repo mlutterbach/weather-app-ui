@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Autosuggest from "react-autosuggest";
+import '../App.css';
 
 const Weather = () => {
   const [city, setCity] = useState("");
+  const [searchCity, setSearchCity] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [weatherData, setWeatherData] = useState(null);
   const [error, setError] = useState("");
@@ -34,7 +36,9 @@ const Weather = () => {
     try {
       const response = await axios.get(`http://localhost:3001/weather/${city}`);
       setWeatherData(response.data);
+      setSearchCity(city);
       setError("");
+      setCity("");
     } catch (err) {
       setWeatherData(null);
       setError("Could not fetch weather data. Please try again.");
@@ -56,7 +60,7 @@ const Weather = () => {
   const getSuggestionValue = (suggestion) => suggestion.name;
 
   const renderSuggestion = (suggestion) => (
-    <div className="react-autosuggest__suggestion">
+    <div className="weather-suggestion">
       {suggestion.name}, {suggestion.country}
     </div>
   );
@@ -74,13 +78,14 @@ const Weather = () => {
           placeholder: "Enter City",
           value: city,
           onChange: (e, { newValue }) => setCity(newValue),
+          className: "weather-input",
         }}
       />
-      <button className="button" onClick={fetchWeather}>Get Weather</button>
-      {error && <p className="error">{error}</p>}
+      <button className="weather-button" onClick={fetchWeather}>Get Weather</button>
+      {error && <p className="weather-error">{error}</p>}
       {weatherData && (
-        <div>
-          <h2>Weather in {city}</h2>
+        <div className="weather-data">
+          <h2>Weather in {searchCity}</h2>
           <p>Temperature: {weatherData.currentConditions.temp}°C</p>
           <p>Conditions: {weatherData.currentConditions.conditions}</p>
         </div>

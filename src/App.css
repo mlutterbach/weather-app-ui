@@ -1,84 +1,107 @@
-body {
-  font-family: 'Arial', sans-serif;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 .container {
   max-width: 600px;
-  margin: 20px auto;
+  margin: 0 auto;
   padding: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  background-color: #ffffff;
+  text-align: center;
 }
 
 h1 {
-  text-align: center;
-  color: #333;
+  font-size: 2rem;
+  margin-bottom: 20px;
 }
 
-.button {
+.weather-input {
   width: 100%;
   padding: 10px;
-  background-color: #007BFF;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.weather-button {
+  padding: 10px 20px;
+  font-size: 1rem;
   color: white;
+  background-color: #007BFF;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  margin-top: 10px;
 }
 
-.button:hover {
+.weather-button:hover {
   background-color: #0056b3;
 }
 
-.error {
+.weather-error {
   color: red;
-  font-size: 14px;
+  font-weight: bold;
+  margin-top: 10px;
 }
 
-.spinner {
-  text-align: center;
-  margin: 20px 0;
+.weather-data {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.weather-data h2 {
+  margin-bottom: 10px;
+}
+
+.weather-data p {
+  margin: 5px 0;
 }
 
 .react-autosuggest__container {
   position: relative;
 }
 
-.react-autosuggest__input {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
 .react-autosuggest__suggestions-container {
   position: absolute;
   top: 100%;
   left: 0;
-  right: 0;
-  background: white;
+  width: 100%;
+  max-height: 250px;
+  overflow-y: auto;
   border: 1px solid #ccc;
   border-radius: 4px;
-  z-index: 1000;
+  background: white;
+  z-index: 10;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.react-autosuggest__suggestions-container--open {
+  display: block;
+}
+
+.react-autosuggest__suggestions-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .react-autosuggest__suggestion {
   padding: 10px;
   cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+
+.react-autosuggest__suggestion:last-child {
+  border-bottom: none;
 }
 
 .react-autosuggest__suggestion--highlighted {
-  background: #007BFF;
-  color: white;
+  background-color: #f0f0f0;
 }
 
-@media (max-width: 600px) {
-  .container {
-    padding: 10px;
-  }
+.react-autosuggest__suggestions-container--empty {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  background-color: white;
+  color: #999;
+  text-align: left;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 10;
 }
